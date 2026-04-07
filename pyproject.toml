@@ -1,6 +1,6 @@
 [project]
 name = "starlette-html"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python-first HTML DSL for building server-rendered UI in Starlette"
 readme = "README.md"
 authors = [
