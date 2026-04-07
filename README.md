@@ -1,7 +1,8 @@
 # starlette-html
 
-`starlette-html` is a Python-first HTML DSL for Starlette that helps you build
-server-rendered UI with plain Python functions.
+`starlette-html` is a Python-first HTML DSL for
+[Starlette](https://starlette.dev/) that helps you build server-rendered UI with
+plain Python functions.
 
 It gives you a small, direct way to:
 
@@ -11,6 +12,15 @@ It gives you a small, direct way to:
 - render full documents or partial fragments
 - return HTML responses directly from routes
 - keep escaping safe by default
+
+You might also like my other Starlette packages that I use and maintain:
+
+- [`starlette-hot-reload`](https://github.com/pyk/starlette-hot-reload) - a
+  lightweight hot reload utility for Starlette that provides fast in-browser
+  reloads for templates and static files.
+- [`starlette-tailwindcss`](https://github.com/pyk/starlette-tailwindcss) - a
+  lightweight utility for Starlette that builds Tailwind CSS on startup with
+  optional watch mode during development.
 
 ## Installation
 
