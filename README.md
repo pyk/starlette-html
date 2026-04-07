@@ -4,7 +4,7 @@
 [Starlette](https://starlette.dev/) that helps you build server-rendered UI with
 plain Python functions.
 
-It gives you a small, direct way to:
+It gives you a simple way to:
 
 - build HTML in Python
 - compose reusable components with normal functions
