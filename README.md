@@ -30,26 +30,19 @@ uv add starlette-html
 pip install starlette-html
 ```
 
-## Example
+## Usage
+
+### Basic route
 
 ```python
 from starlette.applications import Starlette
 from starlette.routing import Route
-from starlette_html import Document, body, h1, head, html, p, title
+from starlette_html import Document
+from examples.basic.pages import HomePage
 
 
 async def load_user(request):
     return {"name": "Ada", "email": "ada@example.com"}
-
-
-def HomePage(*, user: dict):
-    return html(
-        head(title("Home")),
-        body(
-            h1(f"Hello {user['name']}"),
-            p(user["email"]),
-        ),
-    )
 
 
 async def homepage(request):
@@ -62,6 +55,36 @@ app = Starlette(
         Route("/", homepage),
     ]
 )
+```
+
+### Layout composition
+
+Shared layouts keep the route and page components focused on content.
+
+```python
+from starlette_html import body, head, html, title
+
+
+def BaseLayout(*children, page_title: str):
+    return html(
+        head(title(page_title)),
+        body(*children),
+    )
+```
+
+Then a page component can compose the layout with its own content:
+
+```python
+from examples.basic.layouts import BaseLayout
+from starlette_html import h1, p
+
+
+def HomePage(*, user: dict[str, str]):
+    return BaseLayout(
+        h1(f"Hello {user['name']}"),
+        p(user["email"]),
+        page_title="Home",
+    )
 ```
 
 ## Core idea
