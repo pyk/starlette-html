@@ -7,8 +7,47 @@ authors = [
     { name = "pyk", email = "2213646+pyk@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "starlette>=1.0.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.11.0,<0.12.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    # Tests
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    # Formatter and Linter
+    "ruff>=0.15.9",
+    # Type Checker
+    "ty>=0.0.28",
+]
+
+# ty - settings
+[tool.ty.src]
+exclude = ["external"]
+
+# ruff - settings
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # D212 and D213 are incompatible; we use D212 (summary on first line)
+    "D213",
+    # D203 and D211 are incompatible; we use D211 (no blank line before class)
+    "D203",
+    # Trailing comma rule conflict with formatter
+    "COM812",
+]
+exclude = ["external/**"]
+
+# pytest - settings
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+norecursedirs = [
+    "external"
+]
