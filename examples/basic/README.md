@@ -15,4 +15,5 @@ automatically during development.
 
 - a Starlette route returning `Document(...)`
 - a reusable Python component in `examples/basic/pages`
+- a shared layout component in `examples/basic/layouts`
 - plain Python data passed into the component as function arguments

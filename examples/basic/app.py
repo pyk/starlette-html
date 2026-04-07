@@ -6,7 +6,6 @@ import logging
 import sys
 from typing import TYPE_CHECKING
 
-import uvicorn
 from starlette.applications import Starlette
 from starlette.routing import Route
 
@@ -41,12 +40,3 @@ app = Starlette(
     debug=True,
     routes=routes,
 )
-
-if __name__ == "__main__":
-    uvicorn.run(
-        "examples.basic:app",
-        host="127.0.0.1",
-        port=3000,
-        reload=True,
-        log_config=None,
-    )

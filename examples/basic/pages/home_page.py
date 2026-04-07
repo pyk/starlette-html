@@ -1,14 +1,13 @@
 """Page components for the basic example."""
 
-from starlette_html import body, h1, head, html, p, title
+from examples.basic.layouts import BaseLayout
+from starlette_html import h1, p
 
 
 def HomePage(*, user: dict[str, str]) -> object:
     """Render the homepage."""
-    return html(
-        head(title("Home")),
-        body(
-            h1(f"Hello {user['name']}"),
-            p(user["email"]),
-        ),
+    return BaseLayout(
+        h1(f"Hello {user['name']}"),
+        p(user["email"]),
+        page_title="Home",
     )
