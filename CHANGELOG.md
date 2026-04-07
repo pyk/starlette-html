@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-04-07
+
+### Added
+
+- Support additional HTML tag helpers: `main`, `section`, `style`, `nav`,
+  `aside`, `header`, `article`, `code`, `label`, `textarea`, `iframe`, and
+  `link`.
+
 ## [0.1.0] - 2026-04-07
 
 ### Added
@@ -25,5 +33,6 @@ and this project adheres to
 - Starlette response helpers via `HTML` and `Document`.
 - HTMX-friendly attribute rendering through normal HTML attributes.
 
-[Unreleased]: https://github.com/pyk/starlette-html/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/pyk/starlette-html/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/pyk/starlette-html/releases/tag/v0.2.0
 [0.1.0]: https://github.com/pyk/starlette-html/releases/tag/v0.1.0
