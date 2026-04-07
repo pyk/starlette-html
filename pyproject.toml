@@ -24,6 +24,7 @@ dev = [
     "ruff>=0.15.9",
     # Type Checker
     "ty>=0.0.28",
+    "uvicorn>=0.44.0",
 ]
 
 # ty - settings
@@ -40,6 +41,8 @@ ignore = [
     "D203",
     # Trailing comma rule conflict with formatter
     "COM812",
+    # Allows non lower case function name
+    "N802"
 ]
 exclude = ["external/**"]
 
