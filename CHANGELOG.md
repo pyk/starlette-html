@@ -10,22 +10,25 @@ and this project adheres to
 
 ### Added
 
-- Added a dedicated `starlette_html.tags` module for HTML tag helper functions.
-- Added Phase 1 HTML tag helpers for richer UI markup: `details`, `dialog`,
+- Dedicated `starlette_html.tags` module for HTML tag helper functions.
+- Phase 1 HTML tag helpers for richer UI markup: `details`, `dialog`,
   `em`, `footer`, `form`, `img`, `path`, `small`, `strong`, `summary`, `sup`,
   `svg`, `table`, `tbody`, `td`, `th`, `thead`, `time`, and `tr`.
-- Added dedicated tag helper coverage in `tests/tags_test.py`.
+- Support for `cls` values as strings, lists, and tuples, with falsey
+  items omitted before rendering the HTML `class` attribute.
+- Dedicated tag helper coverage in `tests/tags_test.py`.
 
 ### Changed
 
-- Reorganized the package so `core.py` focuses on node types and rendering,
+- Package organization so `core.py` focuses on node types and rendering,
   while tag factories live in `tags.py`.
-- Updated the README, examples, and tests to use `starlette_html.tags` for tag
+- Documentation, examples, and tests to use `starlette_html.tags` for tag
   imports.
+- `input_` tag helper renamed to `input`.
 
 ### Removed
 
-- Removed HTML tag helper re-exports from `starlette_html.__init__`. Import tag
+- HTML tag helper re-exports from `starlette_html.__init__`. Import tag
   helpers from `starlette_html.tags` instead.
 
 ## [0.2.0] - 2026-04-07
