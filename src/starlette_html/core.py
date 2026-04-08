@@ -4,10 +4,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from html import escape
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from collections.abc import Callable
 
 VOID_TAGS = {
     "area",
@@ -141,43 +137,3 @@ def render(node: object) -> str:
 def render_document(node: object) -> str:
     """Render a complete HTML document with a doctype."""
     return f"<!doctype html>{render(node)}"
-
-
-def _tag_factory(tag: str) -> Callable[..., Element]:
-    def tag_fn(*children: object, **attrs: object) -> Element:
-        return create_element(tag, *children, **attrs)
-
-    tag_fn.__name__ = tag
-    tag_fn.__qualname__ = tag
-    tag_fn.__doc__ = f"Create a <{tag}> element."
-    return tag_fn
-
-
-a = _tag_factory("a")
-article = _tag_factory("article")
-aside = _tag_factory("aside")
-body = _tag_factory("body")
-button = _tag_factory("button")
-code = _tag_factory("code")
-div = _tag_factory("div")
-h1 = _tag_factory("h1")
-h2 = _tag_factory("h2")
-head = _tag_factory("head")
-header = _tag_factory("header")
-html = _tag_factory("html")
-iframe = _tag_factory("iframe")
-input_ = _tag_factory("input")
-label = _tag_factory("label")
-li = _tag_factory("li")
-link = _tag_factory("link")
-main = _tag_factory("main")
-meta = _tag_factory("meta")
-nav = _tag_factory("nav")
-p = _tag_factory("p")
-script = _tag_factory("script")
-section = _tag_factory("section")
-span = _tag_factory("span")
-style = _tag_factory("style")
-textarea = _tag_factory("textarea")
-title = _tag_factory("title")
-ul = _tag_factory("ul")
