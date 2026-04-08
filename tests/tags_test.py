@@ -34,6 +34,9 @@ from starlette_html.tags import (
     time,
     tr,
 )
+from starlette_html.tags import (
+    input as html_input,
+)
 
 
 def test_tag_helpers_render_existing_semantic_elements() -> None:
@@ -72,6 +75,13 @@ def test_tag_helpers_render_existing_semantic_elements() -> None:
         "<style>body { color: red; }</style>"
         '<link rel="stylesheet" href="/app.css" />'
         "</main>"
+    )
+
+
+def test_input_tag_helper_renders_input_element() -> None:
+    """The input helper should render the HTML input tag."""
+    assert render(html_input(type="email", required=True)) == (
+        '<input type="email" required />'
     )
 
 

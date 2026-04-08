@@ -1,12 +1,8 @@
 """Core rendering tests for starlette-html."""
 
-from starlette_html import (
-    Fragment,
-    Markup,
-    render,
-    render_document,
-)
-from starlette_html.tags import body, button, div, h1, input_
+from starlette_html import Fragment, Markup, render, render_document
+from starlette_html.tags import body, button, div, h1
+from starlette_html.tags import input as html_input
 
 
 def test_render_escapes_text_and_renders_document() -> None:
@@ -23,7 +19,7 @@ def test_render_handles_attributes_and_fragments() -> None:
     """Attributes and fragments should render with HTMX-friendly names."""
     node = Fragment(
         div("A", cls="card", data_theme="dark"),
-        input_(type="checkbox", checked=True),
+        html_input(type="checkbox", checked=True),
         button("Refresh", hx_get="/items", hx_target="#items"),
     )
 
@@ -37,3 +33,19 @@ def test_render_handles_attributes_and_fragments() -> None:
 def test_markup_is_rendered_verbatim() -> None:
     """Markup should render without escaping."""
     assert render(Markup("<strong>Hello</strong>")) == "<strong>Hello</strong>"
+
+
+def test_render_supports_class_lists() -> None:
+    """Class attributes should accept strings, lists, and tuples."""
+    node = div(
+        "Hello",
+        cls=[
+            "card",
+            None,
+            False,
+            ("is-active", None),
+            "rounded",
+        ],
+    )
+
+    assert render(node) == '<div class="card is-active rounded">Hello</div>'
