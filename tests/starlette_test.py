@@ -3,8 +3,8 @@
 import pytest
 from starlette.responses import HTMLResponse
 
-from starlette_html import body, h1, html, p
 from starlette_html.starlette import HTML, Document
+from starlette_html.tags import body, h1, html, p
 
 
 def home_page(*, user: object) -> object:
