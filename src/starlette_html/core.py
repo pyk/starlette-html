@@ -84,6 +84,51 @@ def create_element(tag: str, *children: object, **attrs: object) -> Element:
     return Element(tag=tag, attrs=attrs, children=_flatten_children(children))
 
 
+def _find_attr_key(attrs: dict[str, object], normalized_name: str) -> str | None:
+    for raw_name in attrs:
+        if _normalize_attr_name(raw_name) == normalized_name:
+            return raw_name
+    return None
+
+
+def render_as(
+    render: object | None,
+    *,
+    default_tag: str,
+    children: tuple[object, ...] = (),
+    attrs: dict[str, object] | None = None,
+) -> Element:
+    """Resolve a render target into a final element."""
+    attrs = attrs or {}
+    flattened_children = _flatten_children(children)
+
+    if render is None:
+        return create_element(default_tag, *flattened_children, **attrs)
+
+    if not isinstance(render, Element):
+        msg = "render must be an Element created by a tag helper or create_element()"
+        raise TypeError(msg)
+
+    merged_attrs = dict(render.attrs)
+    for raw_name, value in attrs.items():
+        normalized_name = _normalize_attr_name(raw_name)
+        existing_key = _find_attr_key(merged_attrs, normalized_name)
+
+        if normalized_name == "class" and existing_key is not None:
+            merged_attrs[existing_key] = [merged_attrs[existing_key], value]
+            continue
+
+        if existing_key is not None:
+            del merged_attrs[existing_key]
+        merged_attrs[raw_name] = value
+
+    return Element(
+        tag=render.tag,
+        attrs=merged_attrs,
+        children=flattened_children or render.children,
+    )
+
+
 def _render_children(children: tuple[object, ...]) -> str:
     return "".join(_render_node(child) for child in children)
 

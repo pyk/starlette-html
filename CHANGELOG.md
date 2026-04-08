@@ -17,6 +17,7 @@ and this project adheres to
 - Support for `cls` values as strings, lists, and tuples, with falsey
   items omitted before rendering the HTML `class` attribute.
 - Dedicated tag helper coverage in `tests/tags_test.py`.
+- `render_as()` helper for render-target composition.
 
 ### Changed
 
@@ -25,6 +26,7 @@ and this project adheres to
 - Documentation, examples, and tests to use `starlette_html.tags` for tag
   imports.
 - `input_` tag helper renamed to `input`.
+- Sidebar menu button primitives now support shadcn-style `render_as=` composition.
 
 ### Removed
 

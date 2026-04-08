@@ -5,6 +5,7 @@ from starlette_html.core import (
     Markup,
     create_element,
     render,
+    render_as,
     render_document,
 )
 from starlette_html.starlette import HTML, Document
@@ -16,5 +17,6 @@ __all__ = [
     "Markup",
     "create_element",
     "render",
+    "render_as",
     "render_document",
 ]
