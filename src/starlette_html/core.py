@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from html import escape
 
@@ -87,16 +88,39 @@ def _render_children(children: tuple[object, ...]) -> str:
     return "".join(_render_node(child) for child in children)
 
 
+def _render_class_value(value: object) -> str | None:
+    if isinstance(value, str):
+        return value
+    if isinstance(value, Sequence) and not isinstance(value, str):
+        class_names: list[str] = []
+        for item in value:
+            if item is None or item is False:
+                continue
+            if isinstance(item, Sequence) and not isinstance(item, str):
+                nested = _render_class_value(item)
+                if nested:
+                    class_names.append(nested)
+                continue
+            class_names.append(str(item))
+        if not class_names:
+            return None
+        return " ".join(class_names)
+    return str(value)
+
+
 def _render_attrs(attrs: dict[str, object]) -> str:
     rendered: list[str] = []
     for raw_name, value in attrs.items():
         name = _render_attr_name(raw_name)
-        if value is None or value is False:
+        rendered_value = value
+        if name == "class":
+            rendered_value = _render_class_value(value)
+        if rendered_value is None or rendered_value is False:
             continue
-        if value is True:
+        if rendered_value is True:
             rendered.append(f" {name}")
             continue
-        rendered.append(f' {name}="{escape(str(value), quote=True)}"')
+        rendered.append(f' {name}="{escape(str(rendered_value), quote=True)}"')
     return "".join(rendered)
 
 
