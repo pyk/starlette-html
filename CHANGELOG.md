@@ -14,6 +14,7 @@ and this project adheres to
 - Phase 1 HTML tag helpers for richer UI markup: `details`, `dialog`,
   `em`, `footer`, `form`, `img`, `path`, `small`, `strong`, `summary`, `sup`,
   `svg`, `table`, `tbody`, `td`, `th`, `thead`, `time`, and `tr`.
+- Additional HTML tag helpers for docs-oriented markup: `h3` and `pre`.
 - Support for `cls` values as strings, lists, and tuples, with falsey
   items omitted before rendering the HTML `class` attribute.
 - Dedicated tag helper coverage in `tests/tags_test.py`.
