@@ -1,19 +1,21 @@
 """Page components for the basic example."""
 
 from examples.basic.components import (
-    Sidebar,
+    AppSidebar,
+    SidebarInset,
     SidebarItem,
     SidebarSection,
     SidebarStyles,
+    SidebarTrigger,
     SidebarUser,
 )
 from examples.basic.layouts import BaseLayout
-from starlette_html.tags import div, h1, main, p, span
+from starlette_html.tags import div, h1, header, p, span
 
 
 def HomePage(*, user: dict[str, str]) -> object:
     """Render the homepage."""
-    sidebar = Sidebar(
+    sidebar = AppSidebar(
         brand_name="Acme Inc",
         brand_plan="Enterprise",
         sections=(
@@ -68,9 +70,16 @@ def HomePage(*, user: dict[str, str]) -> object:
     return BaseLayout(
         div(
             sidebar,
-            main(
+            SidebarInset(
+                header(
+                    div(
+                        SidebarTrigger("Toggle", cls="page__trigger"),
+                        span("Sidebar primitives demo", cls="page__pill"),
+                        cls="page__toolbar",
+                    ),
+                    cls="page__header",
+                ),
                 div(
-                    span("Sidebar Demo", cls="page__pill"),
                     h1("A first pass at a composable sidebar", cls="page__title"),
                     p(
                         "This example pushes starlette-html beyond simple pages into "

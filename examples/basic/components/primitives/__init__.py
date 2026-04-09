@@ -1,12 +1,16 @@
-"""Reusable components for the basic example."""
+"""Generic UI primitives for the basic example.
 
-from examples.basic.components.app_sidebar import (
-    AppSidebar,
-    SidebarItem,
-    SidebarSection,
-    SidebarUser,
-)
-from examples.basic.components.primitives import (
+Primitives are low-level building blocks: small reusable components that mostly
+define structure, styling hooks, and behavior hooks. They accept arbitrary
+children and should stay generic enough to be reused across many different app
+compositions.
+
+This is different from app components such as `AppSidebar`, which know about
+specific application data and product structure like branding, navigation
+sections, and signed-in users.
+"""
+
+from examples.basic.components.primitives.sidebar import (
     Sidebar,
     SidebarContent,
     SidebarFooter,
@@ -31,7 +35,6 @@ from examples.basic.components.primitives import (
 )
 
 __all__ = [
-    "AppSidebar",
     "Sidebar",
     "SidebarContent",
     "SidebarFooter",
@@ -41,7 +44,6 @@ __all__ = [
     "SidebarGroupLabel",
     "SidebarHeader",
     "SidebarInset",
-    "SidebarItem",
     "SidebarMenu",
     "SidebarMenuAction",
     "SidebarMenuBadge",
@@ -52,8 +54,6 @@ __all__ = [
     "SidebarMenuSubItem",
     "SidebarRail",
     "SidebarRoot",
-    "SidebarSection",
     "SidebarStyles",
     "SidebarTrigger",
-    "SidebarUser",
 ]
